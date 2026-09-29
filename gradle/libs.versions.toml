@@ -1,0 +1,99 @@
+[versions]
+# Language / toolchain
+kotlin = "2.4.10"
+jvm = "17"
+
+# Build tooling
+agp = "9.2.1"
+
+# Android SDK
+android-compile-sdk = "37"
+android-min-sdk = "24"
+
+# Compose Multiplatform
+compose-multiplatform = "1.12.0"
+
+# Material 3 is the sample's only UI-kit dependency and is versioned apart from the rest of
+# Compose Multiplatform: org.jetbrains.compose.material3 has no 1.12.0 release, only the alpha
+# line that tracks it. Nothing in `paging/` depends on it.
+compose-material3 = "1.12.0-alpha03"
+
+# AndroidX, for the sample application module only: `setContent` lives in activity-compose.
+androidx-activity = "1.+"
+
+# The sample's ViewModels, and the predictive-back layer its catalog uses to close an example.
+# Nothing in `paging/` depends on either.
+androidx-lifecycle = "2.11.0"
+navigationevent = "1.1.0"
+
+# KotlinX
+kotlinx-coroutines = "1.11.0"
+kotlinx-collections-immutable = "0.5.0"
+
+# Dependency injection
+metro = "1.4.2"
+
+# Static analysis
+detekt = "2.0.0-alpha.2"
+
+# Testing (JVM-only, for the custom Detekt rules in build-logic)
+junit4 = "4.13.2"
+
+[libraries]
+# Gradle plugins resolved on the build-logic classpath
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-gradle-plugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "compose-multiplatform" }
+compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+
+# Kotlin
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+
+# Compose Multiplatform
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-multiplatform" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-multiplatform" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
+compose-animation = { module = "org.jetbrains.compose.animation:animation", version.ref = "compose-multiplatform" }
+# `@Preview` and `PreviewParameterProvider` in common code; only `:paging:preview` and the sample use it.
+compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-multiplatform" }
+# Material 3 is the sample's only extra: the kit itself names no design system.
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
+
+# Sample only
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+navigationevent-compose = { module = "org.jetbrains.androidx.navigationevent:navigationevent-compose", version.ref = "navigationevent" }
+
+# KotlinX
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
+
+# AndroidX (sample application only)
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+
+# Dependency injection
+metro-runtime = { module = "dev.zacsweers.metro:runtime", version.ref = "metro" }
+
+# Static analysis
+detekt-gradle-plugin = { module = "dev.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+detekt-api = { module = "dev.detekt:detekt-api", version.ref = "detekt" }
+detekt-test = { module = "dev.detekt:detekt-test", version.ref = "detekt" }
+detekt-ktlint-wrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
+junit4 = { module = "junit:junit", version.ref = "junit4" }
+
+[plugins]
+# Third-party
+android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+metro = { id = "dev.zacsweers.metro", version.ref = "metro" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+# Conventions (build-logic)
+pagingkit-kmp-library = { id = "io.thernal.pagingkit.kmp.library" }
+pagingkit-compose = { id = "io.thernal.pagingkit.compose" }
+pagingkit-injection = { id = "io.thernal.pagingkit.injection" }
+pagingkit-android-application = { id = "io.thernal.pagingkit.android.application" }
