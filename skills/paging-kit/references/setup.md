@@ -16,6 +16,18 @@ The modules are not published to a Maven repository; the project builds against 
 carries the Gradle conventions and version catalog they expect). Targets: `android`, `iosArm64`,
 `iosSimulatorArm64`.
 
+The source is copied into the application. With skill-manager that is one command, which renames the copy
+and records where it came from, so later paging-kit changes can be merged into it:
+
+```sh
+skillctl.sh kit install paging-kit --package com.example.app --module :core:paging --alias example
+```
+
+It prints what the copied modules expect — the `requires` list in `kit.yml` at the repository root: the
+convention plugins behind `libs.plugins.<alias>.compose` and `.injection`, the catalog entries, and
+`TYPESAFE_PROJECT_ACCESSORS`. Nothing in the application's build is written for you; add those, then
+include each copied directory as a module.
+
 | Module | Add to | As |
 |---|---|---|
 | `:paging:api` | every feature module with paged data or UI; the app | `api` in the app's shared module, `implementation` elsewhere |

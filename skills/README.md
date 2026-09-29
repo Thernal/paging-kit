@@ -47,6 +47,10 @@ directory unchanged.
 A skill describes the revision of the kit it was copied from. When the project moves to a newer
 paging-kit, copy the skill again from the same revision.
 
+**With skill-manager** (the author's own projects), the skill is not copied on its own: `skillctl.sh kit
+install paging-kit` takes the code and this skill together, renamed to the project's package, and records
+the revision in `kits.lock` so both are offered every later change — see [`kit.yml`](../kit.yml).
+
 ## Maintaining
 
 The skill restates the public contracts documented in [`paging/api/README.md`](../paging/api/README.md)

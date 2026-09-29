@@ -34,7 +34,10 @@ git clone --depth 1 https://github.com/Thernal/paging-kit.git /tmp/paging-kit
 mkdir -p .claude/skills && cp -R /tmp/paging-kit/skills/paging-kit .claude/skills/   # Claude Code; other runtimes: their skills directory
 ```
 
-[`skills/README.md`](skills/README.md) lists every skill and the install options. The skill restates
+[`skills/README.md`](skills/README.md) lists every skill and the install options. An application takes the code
+by copying it; [`kit.yml`](kit.yml) declares what is copied, what is only read, what the copy expects of the
+application's build, and the names an application renames — skill-manager's `kit install` / `kit update`
+read it to copy, rename and later merge. The skill restates
 [`paging/api/README.md`](paging/api/README.md) for an agent; when in doubt, that README and the code
 under `paging/api` are the source of truth.
 

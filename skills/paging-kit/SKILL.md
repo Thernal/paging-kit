@@ -31,6 +31,11 @@ grep -rn --include=*.kt -e "windowId =" .                                       
 
 If nothing is installed, read [references/setup.md](references/setup.md) before anything else.
 
+**Taken as a kit?** A `kits.lock` at the project root naming `paging-kit` means the code was copied with
+skill-manager, renamed to the project's package and module path — and this skill with it, so the names
+here are already the project's. `skillctl.sh kit status paging-kit` says whether paging-kit has moved
+since and what changed; offer `kit update paging-kit` rather than editing towards a newer version by hand.
+
 ## 2. The model
 
 These hold everywhere; each reference builds on them.
