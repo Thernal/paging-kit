@@ -89,7 +89,7 @@ Five facts carry the rest of this document:
 
 | Module | Who depends on it | What it holds |
 |---|---|---|
-| `:paging:api` | every feature module, and the app | the contracts in this document; re-exports coroutines and immutable collections |
+| `:paging:api` | every feature module, and the app | the contracts in this document; re-exports nothing — see [Dependencies you declare](#dependencies-you-declare) |
 | `:paging:impl` | the module that builds the graph | `PaginatorImpl`, the list and flow-row hierarchies and their renderers |
 | `:paging:wiring` | the module that declares the [Metro](https://github.com/ZacSweers/metro) graph | `PagingWiring`, the bindings below |
 | `:paging:preview` | feature modules that preview paged screens — optional | `PagingPreviewParameterProvider`, see [Previews](#previews) |
@@ -101,14 +101,30 @@ The modules are not published to a Maven repository; build against them from sou
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            api(projects.paging.api)
+            implementation(projects.paging.api)
             implementation(projects.paging.impl)
             implementation(projects.paging.wiring)          // leave out when wiring by hand
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.collections.immutable)
             implementation(libs.lifecycle.viewmodel.compose) // paginators live in ViewModels
         }
     }
 }
 ```
+
+### Dependencies you declare
+
+`api(...)` is not used in this repository: no kit module re-exports anything, so a module that uses a
+type from one of these libraries in its own code declares the library itself, as `implementation`.
+
+| Library (catalog entry) | Declare it where the module uses |
+|---|---|
+| `kotlinx-coroutines-core` | `Flow<PagingState<T>>` from a paginator |
+| `kotlinx-collections-immutable` | `ImmutableList<T>` pages and items |
+| `compose-ui-tooling-preview` | `PagingPreviewParameterProvider` from `:paging:preview` (`@Preview`, `PreviewParameterProvider`) |
+
+A module that names none of these types needs none of them. A missing one shows up at compile time as
+`Cannot access class 'kotlinx.collections.immutable.ImmutableList'`.
 
 ### With Metro
 

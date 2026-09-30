@@ -61,16 +61,20 @@ wiring without a DI framework, is in [Installing](../paging/api/README.md#instal
 
 ### 1. Depend on the three modules
 
-[`shared/build.gradle.kts`](shared/build.gradle.kts): the contracts (`api`), the implementation that
-backs them (`implementation`), and the Metro bindings that install both (`implementation`). The
-module that declares the graph also applies the Metro plugin. A feature module needs only
-`:paging:api`.
+[`shared/build.gradle.kts`](shared/build.gradle.kts): the contracts, the implementation that backs
+them, and the Metro bindings that install both — all `implementation`, since no kit module
+re-exports anything. The libraries whose types appear in the kit's signatures are declared beside
+them ([Dependencies you declare](../paging/api/README.md#dependencies-you-declare)). The module that
+declares the graph also applies the Metro plugin. A feature module needs `:paging:api` and the
+libraries it uses from that list.
 
 ```kotlin
 commonMain.dependencies {
-    api(projects.paging.api)
+    implementation(projects.paging.api)
     implementation(projects.paging.impl)
     implementation(projects.paging.wiring)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.collections.immutable)
     implementation(libs.lifecycle.viewmodel.compose)
 }
 ```

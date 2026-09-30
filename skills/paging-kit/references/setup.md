@@ -30,12 +30,16 @@ include each copied directory as a module.
 
 | Module | Add to | As |
 |---|---|---|
-| `:paging:api` | every feature module with paged data or UI; the app | `api` in the app's shared module, `implementation` elsewhere |
+| `:paging:api` | every feature module with paged data or UI; the app | `implementation` |
 | `:paging:impl` | the module that builds the graph (or wires by hand) | `implementation` |
 | `:paging:wiring` | the module declaring the Metro graph — skip when wiring by hand | `implementation` |
 | `:paging:preview` | feature modules with previews of paged screens — optional | `implementation` |
 
-`:paging:api` re-exports `kotlinx-coroutines-core` and `kotlinx-collections-immutable` and applies
+Nothing is re-exported (`api(...)` is not used), so every module that uses a type from these
+libraries declares it itself: `kotlinx-coroutines-core` (`Flow<PagingState<T>>`),
+`kotlinx-collections-immutable` (`ImmutableList`), and with `:paging:preview`
+`compose-ui-tooling-preview`. `Cannot access class 'kotlinx.collections.immutable.ImmutableList'`
+means one is missing — see `paging/api/README.md` → Dependencies you declare. `:paging:api` applies
 Compose. Paginators are owned by ViewModels, so the app normally also has
 `androidx.lifecycle:lifecycle-viewmodel-compose`.
 
