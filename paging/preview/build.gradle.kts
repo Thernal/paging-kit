@@ -6,10 +6,11 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                // api: `PagingState` and `PreviewParameterProvider` are both in this module's own
-                // signatures, and a consumer extending the provider compiles against both.
-                api(projects.paging.api)
-                api(libs.compose.ui.tooling.preview)
+                // `PagingState` and `PreviewParameterProvider` are both in this module's signatures;
+                // `api(...)` is not used in this repository, so a consumer declares both itself.
+                implementation(projects.paging.api)
+                implementation(libs.compose.ui.tooling.preview)
+                implementation(libs.kotlinx.collections.immutable)
             }
         }
     }

@@ -5,12 +5,13 @@ plugins {
 kotlin {
     sourceSets {
         commonMain {
-            // api, not implementation: coroutines and the immutable collections both appear in this
-            // module's own public signatures (`Flow<PagingState<T>>`, `ImmutableList<T>`), so a
-            // consumer cannot compile against it without them.
+            // Coroutines and the immutable collections both appear in this module's public
+            // signatures (`Flow<PagingState<T>>`, `ImmutableList<T>`), yet neither is re-exported:
+            // `api(...)` is not used in this repository, so a consumer declares both itself
+            // (paging/api/README.md → Dependencies you declare).
             dependencies {
-                api(libs.kotlinx.coroutines.core)
-                api(libs.kotlinx.collections.immutable)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.collections.immutable)
             }
         }
     }

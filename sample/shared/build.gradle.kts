@@ -20,11 +20,13 @@ kotlin {
                 // The sample is a consumer, so it names the three modules an application names:
                 // the contracts, the implementation that backs them, and the bindings that install
                 // both into a graph.
-                api(projects.paging.api)
+                implementation(projects.paging.api)
                 implementation(projects.paging.impl)
                 implementation(projects.paging.wiring)
                 // PagingPreviewParameterProvider, for the previews next to each screen.
                 implementation(projects.paging.preview)
+                // `@Preview` and the provider's supertype; the preview module re-exports nothing.
+                implementation(libs.compose.ui.tooling.preview)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.collections.immutable)
                 // The kit names no design system; the sample needs one to be worth running, and
