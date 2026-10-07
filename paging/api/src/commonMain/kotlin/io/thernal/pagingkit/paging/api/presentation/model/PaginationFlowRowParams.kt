@@ -19,6 +19,8 @@ import io.thernal.pagingkit.paging.api.domain.model.PagingState
  * @property shimmerContent drawn [shimmerItemCount] times with its index while the first page
  *   loads, and once with `null` as a footer while a later page loads.
  * @property separator drawn between two adjacent items, inside the flow.
+ * @property style a one-off look for this row; `null` takes
+ *   [PagingTheme.styles][io.thernal.pagingkit.paging.api.presentation.theme.PagingTheme]`.flowRow`.
  */
 @Immutable
 data class PaginationFlowRowParams<T>(
@@ -26,7 +28,7 @@ data class PaginationFlowRowParams<T>(
     val key: (T) -> Any,
     val onFetch: () -> Unit = {},
     val prefetchDistance: Dp = DEFAULT_PREFETCH_DISTANCE,
-    val shimmerItemCount: Int = DEFAULT_SHIMMER_ITEM_COUNT,
+    val shimmerItemCount: Int = PagedItemsParams.DEFAULT_SHIMMER_ITEM_COUNT,
     val contentType: (T) -> Any? = { null },
     val header: (@Composable () -> Unit)? = null,
     val shimmerContent: (@Composable (Int?) -> Unit)? = null,
@@ -34,6 +36,7 @@ data class PaginationFlowRowParams<T>(
     val errorContent: (@Composable ColumnScope.() -> Unit)? = null,
     val emptyContent: (@Composable ColumnScope.() -> Unit)? = null,
     val appendErrorContent: (@Composable (Throwable, () -> Unit) -> Unit)? = null,
+    val style: PaginationFlowRowStyle? = null,
 )
 
 private val DEFAULT_PREFETCH_DISTANCE = 240.dp

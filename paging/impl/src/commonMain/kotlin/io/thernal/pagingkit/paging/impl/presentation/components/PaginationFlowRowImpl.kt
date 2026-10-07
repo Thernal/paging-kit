@@ -25,11 +25,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.presentation.model.PaginationFlowRowParams
+import io.thernal.pagingkit.paging.api.presentation.theme.PagingTheme
 import kotlinx.coroutines.flow.first
 
 private enum class FlowRowContentKey { SHIMMER, CONTENT, ERROR, EMPTY }
-
-private const val CROSSFADE_DURATION_MILLIS = 500
 
 @Composable
 internal fun <T> PaginationFlowRowImpl(
@@ -38,6 +37,7 @@ internal fun <T> PaginationFlowRowImpl(
     content: @Composable (T) -> Unit,
 ) {
     val pagingState = params.state
+    val style = params.style ?: PagingTheme.styles.flowRow
     // The content branch keeps drawing the last loaded list while it fades out into another state,
     // when `params.state` has already moved on.
     var lastSuccess by remember { mutableStateOf<PagingState.Success<T>?>(null) }
@@ -49,7 +49,7 @@ internal fun <T> PaginationFlowRowImpl(
     Crossfade(
         targetState = pagingState.contentKey(),
         modifier = modifier,
-        animationSpec = tween(CROSSFADE_DURATION_MILLIS),
+        animationSpec = tween(style.crossfadeMillis),
         label = "pagination-flow-row",
     ) { target ->
         when (target) {

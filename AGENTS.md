@@ -53,7 +53,9 @@ bumped (`scripts/check-corpus.py --kits` says so).
 
 ## The sample
 
-`sample/` shows every capability on Android and iOS and is never copied into apps. A sample that builds is
+`sample/` shows every capability on Android and iOS and is never copied into apps. `sample/designsystem` is
+how an app's design system feeds the kit — keep every look the kit decides reachable from a `PagingStyles`
+field, so that mapping can set it; a hard-coded duration or size in `impl` is a look no app can change. A sample that builds is
 not one that starts: after changing it, build the iOS app with `xcodebuild` and launch it on a simulator
 (`xcrun simctl launch --console-pty …`) — Compose Multiplatform refuses to start without
 `CADisableMinimumFrameDurationOnPhone` in Info.plist, and a crash there shows nowhere else.

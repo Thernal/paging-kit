@@ -17,6 +17,11 @@ PaginationFlowRow(
 }
 ```
 
+The crossfade duration comes from `PagingTheme.styles.flowRow` (`PaginationFlowRowStyle(crossfadeMillis)`),
+mapped once from the app's design system in `designsystem/…/paging/AppPagingStyles.kt` and installed at the
+root as `AppTheme { PagingTheme(styles = appPagingStyles()) { … } }`; a one-off is `style =` on the params.
+Never change it by editing the kit.
+
 Imports: `io.thernal.pagingkit.paging.api.presentation.components.PaginationFlowRow`,
 `io.thernal.pagingkit.paging.api.presentation.model.PaginationFlowRowParams`.
 

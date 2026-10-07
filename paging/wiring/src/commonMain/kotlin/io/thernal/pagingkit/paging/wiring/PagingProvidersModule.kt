@@ -23,7 +23,7 @@ import io.thernal.pagingkit.paging.impl.presentation.components.PaginationListRe
  */
 @BindingContainer
 @ContributesTo(AppScope::class)
-interface PagingWiring {
+interface PagingProvidersModule {
     companion object {
         @Provides
         @SingleIn(AppScope::class)
