@@ -1,8 +1,8 @@
-package io.thernal.pagingkit.sample.android
+package io.thernal.pagingkit.sample.app
 
 import android.app.Application
-import io.thernal.pagingkit.sample.app.SampleGraph
-import io.thernal.pagingkit.sample.app.createSampleGraph
+import io.thernal.pagingkit.sample.shared.app.SampleGraph
+import io.thernal.pagingkit.sample.shared.app.createSampleGraph
 
 /**
  * Owns the application graph for the life of the process. An activity recreated for a rotation

@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.lists
+package io.thernal.pagingkit.sample.shared.lists
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,13 +6,11 @@ import io.thernal.pagingkit.paging.api.domain.loader.PageLoader
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.Paginator
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.fake.FakeServer
+import io.thernal.pagingkit.sample.shared.fake.FakeServer
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-
-private const val NUMBER_COUNT = 200
 
 /**
  * The whole contract in one class: a factory in, a private paginator, its state out, and one
@@ -43,3 +41,5 @@ class NumbersViewModel(
         viewModelScope.launch { paginator.fetch() }
     }
 }
+
+private const val NUMBER_COUNT = 200

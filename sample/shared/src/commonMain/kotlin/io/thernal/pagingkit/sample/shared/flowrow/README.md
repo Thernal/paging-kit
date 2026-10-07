@@ -10,7 +10,7 @@ and crossfades between shimmer, content, error and empty.
 |---|---|
 | [`TagCloudViewModel.kt`](TagCloudViewModel.kt) | a paginator over 400 tags, 30 per page, and a request counter |
 | [`TagCloudScreen.kt`](TagCloudScreen.kt) | `PaginationFlowRow` with a chip per tag and a shimmer per chip |
-| [`FlowRowBindings.kt`](FlowRowBindings.kt) | catalog entry |
+| [`FlowRowProvidersModule.kt`](FlowRowProvidersModule.kt) | catalog entry |
 
 ## Simple: Tag cloud
 

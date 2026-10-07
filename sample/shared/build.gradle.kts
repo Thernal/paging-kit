@@ -25,6 +25,7 @@ kotlin {
                 implementation(projects.paging.wiring)
                 // PagingPreviewParameterProvider, for the previews next to each screen.
                 implementation(projects.paging.preview)
+                implementation(projects.sample.designsystem)
                 // `@Preview` and the provider's supertype; the preview module re-exports nothing.
                 implementation(libs.compose.ui.tooling.preview)
                 implementation(libs.kotlinx.coroutines.core)

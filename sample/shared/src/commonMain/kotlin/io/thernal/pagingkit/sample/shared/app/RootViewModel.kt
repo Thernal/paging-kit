@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.app
+package io.thernal.pagingkit.sample.shared.app
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelStore

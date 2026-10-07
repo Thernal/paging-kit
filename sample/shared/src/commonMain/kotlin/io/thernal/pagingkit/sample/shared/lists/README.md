@@ -13,7 +13,7 @@ paginator owns the pages and the state; the list only renders the state and says
 | [`Post.kt`](Post.kt) | the feed's item and its seed data |
 | [`FeedViewModel.kt`](FeedViewModel.kt) | refresh, local prepend and remove, a flaky network |
 | [`FeedScreen.kt`](FeedScreen.kt) | pull to refresh, empty/error/retry slots, separators, scroll to top |
-| [`ListsBindings.kt`](ListsBindings.kt) | the factory from the graph, handed to each screen |
+| [`ListsProvidersModule.kt`](ListsProvidersModule.kt) | the factory from the graph, handed to each screen |
 
 ## Simple: Numbers
 

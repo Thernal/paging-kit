@@ -13,7 +13,7 @@ two states — which one depends on whether anything had loaded yet. The second 
 | [`FailuresScreen.kt`](FailuresScreen.kt) | `errorContent` and `appendErrorContent`, and the state printed live |
 | [`SearchViewModel.kt`](SearchViewModel.kt) | a loader that reads the query; a debounced reset per change |
 | [`SearchScreen.kt`](SearchScreen.kt) | a text field above a paged list of results |
-| [`ErrorsBindings.kt`](ErrorsBindings.kt) | catalog entries |
+| [`ErrorsProvidersModule.kt`](ErrorsProvidersModule.kt) | catalog entries |
 
 ## Simple: Failures and retry
 

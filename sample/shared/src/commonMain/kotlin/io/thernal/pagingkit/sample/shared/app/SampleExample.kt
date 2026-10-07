@@ -1,12 +1,6 @@
-package io.thernal.pagingkit.sample.app
+package io.thernal.pagingkit.sample.shared.app
 
 import androidx.compose.runtime.Composable
-
-/** Whether an example is the smallest thing that works, or the shape a real screen would have. */
-enum class ExampleKind(val label: String) {
-    SIMPLE("simple"),
-    REAL_LIFE("real life"),
-}
 
 /**
  * One entry on the catalog screen.

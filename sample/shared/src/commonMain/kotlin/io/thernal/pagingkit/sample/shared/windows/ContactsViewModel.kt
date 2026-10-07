@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.windows
+package io.thernal.pagingkit.sample.shared.windows
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,25 +6,18 @@ import io.thernal.pagingkit.paging.api.domain.loader.PageLoader
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.Paginator
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.fake.FakeServer
+import io.thernal.pagingkit.sample.shared.fake.FakeServer
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-
-private const val CONTACTS_PAGE_SIZE = 15
-
-data class Contact(
-    val id: Int,
-    val name: String,
-    val phone: String,
-)
 
 private val firstNames = listOf(
     "Adil", "Aysel", "Babək", "Cavid", "Dilarə", "Elvin", "Fidan", "Günay", "Həsən", "İlkin",
     "Kamran", "Leyla", "Murad", "Nigar", "Orxan", "Pərvin", "Rəşad", "Səbinə", "Tural", "Ülviyyə",
     "Vüsal", "Yaqub", "Zaur",
 )
+
 private val lastNames = listOf("Əliyev", "Həsənov", "Məmmədov", "Quliyev", "Rzayev", "Səfərov")
 
 /**
@@ -60,3 +53,5 @@ class ContactsViewModel(
         viewModelScope.launch { paginator.fetch(size = CONTACTS_PAGE_SIZE) }
     }
 }
+
+private const val CONTACTS_PAGE_SIZE = 15

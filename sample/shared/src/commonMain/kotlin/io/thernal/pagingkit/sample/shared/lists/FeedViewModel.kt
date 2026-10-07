@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.lists
+package io.thernal.pagingkit.sample.shared.lists
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,16 +6,13 @@ import io.thernal.pagingkit.paging.api.domain.loader.PageLoader
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.Paginator
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.fake.FakeServer
+import io.thernal.pagingkit.sample.shared.fake.FakeServer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-
-private const val POST_COUNT = 120
-private const val FLAKY_FAILURE_RATE = 0.35
 
 /**
  * A feed the way an application has one: pull to refresh, a post the user just wrote appearing at
@@ -82,3 +79,6 @@ class FeedViewModel(
         }
     }
 }
+
+private const val POST_COUNT = 120
+private const val FLAKY_FAILURE_RATE = 0.35

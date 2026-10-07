@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.lists
+package io.thernal.pagingkit.sample.shared.lists
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,12 +29,12 @@ import io.thernal.pagingkit.paging.api.presentation.components.PaginationList
 import io.thernal.pagingkit.paging.api.presentation.model.PagedItemsParams
 import io.thernal.pagingkit.paging.api.presentation.model.PaginationListParams
 import io.thernal.pagingkit.paging.api.presentation.model.rememberPaginationListState
-import io.thernal.pagingkit.sample.ui.ExampleScaffold
-import io.thernal.pagingkit.sample.ui.FullMessage
-import io.thernal.pagingkit.sample.ui.ItemRow
-import io.thernal.pagingkit.sample.ui.RetryFooter
-import io.thernal.pagingkit.sample.ui.SectionHeader
-import io.thernal.pagingkit.sample.ui.ShimmerRow
+import io.thernal.pagingkit.sample.shared.ui.ExampleScaffold
+import io.thernal.pagingkit.sample.shared.ui.FullMessage
+import io.thernal.pagingkit.sample.shared.ui.ItemRow
+import io.thernal.pagingkit.sample.shared.ui.RetryFooter
+import io.thernal.pagingkit.sample.shared.ui.SectionHeader
+import io.thernal.pagingkit.sample.shared.ui.ShimmerRow
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)

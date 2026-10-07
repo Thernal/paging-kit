@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.catalog
+package io.thernal.pagingkit.sample.shared.catalog
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,8 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.thernal.pagingkit.sample.app.ExampleKind
-import io.thernal.pagingkit.sample.app.SampleExample
+import io.thernal.pagingkit.sample.shared.app.SampleExample
 import kotlinx.collections.immutable.ImmutableList
 
 /**
@@ -76,13 +75,5 @@ private fun CatalogRow(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
-    }
-}
-
-/** Kind ordering puts the simple example of a group before its real-life sibling. */
-internal fun ExampleKind.sortKey(): Int {
-    return when (this) {
-        ExampleKind.SIMPLE -> 0
-        ExampleKind.REAL_LIFE -> 1
     }
 }

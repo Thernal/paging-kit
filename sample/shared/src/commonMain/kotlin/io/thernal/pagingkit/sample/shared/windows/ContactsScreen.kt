@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.windows
+package io.thernal.pagingkit.sample.shared.windows
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -7,10 +7,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
 import io.thernal.pagingkit.paging.api.presentation.components.PaginationList
 import io.thernal.pagingkit.paging.api.presentation.model.PagedItemsGroupedParams
-import io.thernal.pagingkit.sample.ui.ExampleScaffold
-import io.thernal.pagingkit.sample.ui.ItemRow
-import io.thernal.pagingkit.sample.ui.SectionHeader
-import io.thernal.pagingkit.sample.ui.ShimmerRow
+import io.thernal.pagingkit.sample.shared.ui.ExampleScaffold
+import io.thernal.pagingkit.sample.shared.ui.ItemRow
+import io.thernal.pagingkit.sample.shared.ui.SectionHeader
+import io.thernal.pagingkit.sample.shared.ui.ShimmerRow
 
 @Composable
 fun ContactsScreen(paginatorFactory: PaginatorFactory) {

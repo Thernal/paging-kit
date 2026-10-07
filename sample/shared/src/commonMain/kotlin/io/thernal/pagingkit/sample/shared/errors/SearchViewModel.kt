@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.errors
+package io.thernal.pagingkit.sample.shared.errors
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import io.thernal.pagingkit.paging.api.domain.loader.PageLoader
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.Paginator
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.fake.FakeServer
+import io.thernal.pagingkit.sample.shared.fake.FakeServer
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -25,13 +25,10 @@ private val cities = listOf(
     "Saatlı", "Sabirabad", "Şabran", "Şamaxı", "Şəki", "Şəmkir", "Şirvan", "Şuşa", "Sumqayıt", "Tərtər",
     "Tovuz", "Ucar", "Xaçmaz", "Xankəndi", "Xızı", "Yardımlı", "Yevlax", "Zaqatala", "Zəngilan", "Zərdab",
 )
-private const val RESULTS_PER_CITY = 8
-private val searchDebounce = 350.milliseconds
 
-data class Place(
-    val id: String,
-    val name: String,
-)
+private const val RESULTS_PER_CITY = 8
+
+private val searchDebounce = 350.milliseconds
 
 /**
  * Search as you type. The loader reads [activeQuery], so a new query is a `reset` and a fetch — one

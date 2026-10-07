@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.lists
+package io.thernal.pagingkit.sample.shared.lists
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
@@ -6,10 +6,8 @@ import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.IntoSet
 import dev.zacsweers.metro.Provides
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.app.ExampleKind
-import io.thernal.pagingkit.sample.app.SampleExample
-
-private const val GROUP = "Lists"
+import io.thernal.pagingkit.sample.shared.app.ExampleKind
+import io.thernal.pagingkit.sample.shared.app.SampleExample
 
 /**
  * The factory is injected here and handed to the screen, which hands it to its ViewModel — the
@@ -17,7 +15,7 @@ private const val GROUP = "Lists"
  */
 @BindingContainer
 @ContributesTo(AppScope::class)
-interface ListsBindings {
+interface ListsProvidersModule {
     companion object {
         @Provides
         @IntoSet
@@ -46,3 +44,5 @@ interface ListsBindings {
         }
     }
 }
+
+private const val GROUP = "Lists"

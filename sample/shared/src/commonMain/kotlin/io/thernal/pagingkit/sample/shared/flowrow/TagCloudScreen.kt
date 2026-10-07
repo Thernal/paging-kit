@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.flowrow
+package io.thernal.pagingkit.sample.shared.flowrow
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.SuggestionChip
@@ -12,9 +12,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
 import io.thernal.pagingkit.paging.api.presentation.components.PaginationFlowRow
 import io.thernal.pagingkit.paging.api.presentation.model.PaginationFlowRowParams
-import io.thernal.pagingkit.sample.ui.ExampleNote
-import io.thernal.pagingkit.sample.ui.ExampleScaffold
-import io.thernal.pagingkit.sample.ui.ShimmerBlock
+import io.thernal.pagingkit.sample.shared.ui.ExampleNote
+import io.thernal.pagingkit.sample.shared.ui.ExampleScaffold
+import io.thernal.pagingkit.sample.shared.ui.ShimmerBlock
 
 private const val SHIMMER_CHIP_COUNT = 24
 

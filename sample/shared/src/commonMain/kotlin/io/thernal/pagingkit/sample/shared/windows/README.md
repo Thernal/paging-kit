@@ -13,7 +13,7 @@ placeholders, its own footer and its own fetch trigger, next to plain `item`s an
 | [`TwoWindowsScreen.kt`](TwoWindowsScreen.kt) | two windows, a header between them that waits with `ifLoaded` |
 | [`ContactsViewModel.kt`](ContactsViewModel.kt) | contacts sorted by name, fifteen per page |
 | [`ContactsScreen.kt`](ContactsScreen.kt) | `pagedItemsGrouped` with sticky letter headers |
-| [`WindowsBindings.kt`](WindowsBindings.kt) | catalog entries |
+| [`WindowsProvidersModule.kt`](WindowsProvidersModule.kt) | catalog entries |
 
 ## Simple: Two windows
 

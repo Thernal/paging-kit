@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.windows
+package io.thernal.pagingkit.sample.shared.windows
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,21 +6,14 @@ import io.thernal.pagingkit.paging.api.domain.loader.PageLoader
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.Paginator
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.fake.FakeServer
+import io.thernal.pagingkit.sample.shared.fake.FakeServer
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
 
-private const val PINNED_PAGE_SIZE = 4
-private const val ARTICLE_COUNT = 90
 private val pinnedIds = listOf(3, 7, 12, 30, 41, 58)
-
-data class Article(
-    val id: Int,
-    val title: String,
-)
 
 /**
  * Two paginators, two states, two fetch commands — one per window. The pinned articles are also in
@@ -71,3 +64,6 @@ class TwoWindowsViewModel(
 private fun article(id: Int): Article {
     return Article(id = id, title = "Article $id")
 }
+
+private const val PINNED_PAGE_SIZE = 4
+private const val ARTICLE_COUNT = 90

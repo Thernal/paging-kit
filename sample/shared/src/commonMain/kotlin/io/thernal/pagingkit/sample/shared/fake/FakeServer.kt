@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.fake
+package io.thernal.pagingkit.sample.shared.fake
 
 import io.thernal.pagingkit.paging.api.domain.model.Page
 import kotlinx.collections.immutable.toImmutableList
@@ -6,9 +6,6 @@ import kotlinx.coroutines.delay
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
-
-/** What a failed request throws; a real loader would let its transport exception through. */
-class FakeNetworkException(message: String) : Exception(message)
 
 /**
  * A backend that pages through an in-memory list, slowly, and fails when told to. Every example

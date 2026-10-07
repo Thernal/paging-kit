@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.errors
+package io.thernal.pagingkit.sample.shared.errors
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,11 +13,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
 import io.thernal.pagingkit.paging.api.presentation.components.PaginationList
 import io.thernal.pagingkit.paging.api.presentation.model.PagedItemsParams
-import io.thernal.pagingkit.sample.ui.ExampleScaffold
-import io.thernal.pagingkit.sample.ui.FullMessage
-import io.thernal.pagingkit.sample.ui.ItemRow
-import io.thernal.pagingkit.sample.ui.RetryFooter
-import io.thernal.pagingkit.sample.ui.ShimmerRow
+import io.thernal.pagingkit.sample.shared.ui.ExampleScaffold
+import io.thernal.pagingkit.sample.shared.ui.FullMessage
+import io.thernal.pagingkit.sample.shared.ui.ItemRow
+import io.thernal.pagingkit.sample.shared.ui.RetryFooter
+import io.thernal.pagingkit.sample.shared.ui.ShimmerRow
 
 @Composable
 fun SearchScreen(paginatorFactory: PaginatorFactory) {

@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.errors
+package io.thernal.pagingkit.sample.shared.errors
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,13 +6,11 @@ import io.thernal.pagingkit.paging.api.domain.loader.PageLoader
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.Paginator
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.fake.FakeServer
+import io.thernal.pagingkit.sample.shared.fake.FakeServer
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-
-private const val ROW_COUNT = 60
 
 /**
  * Starts with its first request set to fail, so the screen opens on the first-page error. After
@@ -52,3 +50,5 @@ class FailuresViewModel(
         onFetch()
     }
 }
+
+private const val ROW_COUNT = 60

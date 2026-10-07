@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.flowrow
+package io.thernal.pagingkit.sample.shared.flowrow
 
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.BindingContainer
@@ -6,12 +6,12 @@ import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.IntoSet
 import dev.zacsweers.metro.Provides
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.app.ExampleKind
-import io.thernal.pagingkit.sample.app.SampleExample
+import io.thernal.pagingkit.sample.shared.app.ExampleKind
+import io.thernal.pagingkit.sample.shared.app.SampleExample
 
 @BindingContainer
 @ContributesTo(AppScope::class)
-interface FlowRowBindings {
+interface FlowRowProvidersModule {
     companion object {
         @Provides
         @IntoSet

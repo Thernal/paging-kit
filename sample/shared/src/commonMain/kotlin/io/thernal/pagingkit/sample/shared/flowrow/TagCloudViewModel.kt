@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.sample.flowrow
+package io.thernal.pagingkit.sample.shared.flowrow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import io.thernal.pagingkit.paging.api.domain.loader.PageLoader
 import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.Paginator
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
-import io.thernal.pagingkit.sample.fake.FakeServer
+import io.thernal.pagingkit.sample.shared.fake.FakeServer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -14,16 +14,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-private const val TAG_PAGE_SIZE = 30
-
 private val words = listOf(
     "kotlin", "compose", "android", "ios", "paging", "coroutines", "flow", "lazy", "state", "metro",
     "gradle", "detekt", "material", "design", "layout", "shimmer", "retry", "cache", "network", "offline",
-)
-
-data class Tag(
-    val id: Int,
-    val label: String,
 )
 
 class TagCloudViewModel(
@@ -62,3 +55,5 @@ class TagCloudViewModel(
         }
     }
 }
+
+private const val TAG_PAGE_SIZE = 30
