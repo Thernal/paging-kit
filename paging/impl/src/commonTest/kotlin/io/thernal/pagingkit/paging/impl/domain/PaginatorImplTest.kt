@@ -20,7 +20,7 @@ import kotlin.test.assertTrue
 
 class PaginatorImplTest {
     @Test
-    fun loadsNumberedPagesUntilTheLastPage() {
+    fun `loads numbered pages until the last page`() {
         runTest {
             var calls = 0
             val paginator = PaginatorImpl(
@@ -55,7 +55,7 @@ class PaginatorImplTest {
     }
 
     @Test
-    fun deduplicatesIdentitiesAndSupportsListMutations() {
+    fun `deduplicates identities and supports list mutations`() {
         runTest {
             val paginator = PaginatorImpl(
                 loader = PageLoader { _, _ ->
@@ -81,7 +81,7 @@ class PaginatorImplTest {
     }
 
     @Test
-    fun callsQueuedBehindALoadOfTheSamePageDoNotLoadItAgain() {
+    fun `calls queued behind a load of the same page do not load it again`() {
         runTest {
             val gate = CompletableDeferred<Unit>()
             val requested = mutableListOf<Int>()
@@ -105,7 +105,7 @@ class PaginatorImplTest {
     }
 
     @Test
-    fun aMutationMadeWhileAPageLoadsSurvivesThePage() {
+    fun `a mutation made while a page loads survives the page`() {
         runTest {
             var gate = CompletableDeferred(Unit)
             val paginator = PaginatorImpl(
@@ -131,7 +131,7 @@ class PaginatorImplTest {
     }
 
     @Test
-    fun aResetWhileAPageLoadsDiscardsItWhetherItSucceedsOrFails() {
+    fun `a reset while a page loads discards it whether it succeeds or fails`() {
         runTest {
             val gate = CompletableDeferred<Unit>()
             val paginator = PaginatorImpl(
@@ -167,7 +167,7 @@ class PaginatorImplTest {
     }
 
     @Test
-    fun aFirstPageFailureIsAnErrorAndALaterOneKeepsTheItems() {
+    fun `a first page failure is an error and a later one keeps the items`() {
         runTest {
             var shouldFailNext = true
             val paginator = PaginatorImpl(
@@ -200,7 +200,7 @@ class PaginatorImplTest {
     }
 
     @Test
-    fun aCancelledLoadLeavesNoLoadingStateBehind() {
+    fun `a cancelled load leaves no loading state behind`() {
         runTest {
             val never = CompletableDeferred<Page<Int>>()
             val paginator = PaginatorImpl(
@@ -228,7 +228,7 @@ class PaginatorImplTest {
     }
 
     @Test
-    fun mutationsBeforeTheFirstPageAreIgnored() {
+    fun `mutations before the first page are ignored`() {
         runTest {
             val paginator = PaginatorImpl(
                 loader = PageLoader { _, _ -> Page(items = (1..3).toList().toImmutableList()) },

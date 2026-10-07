@@ -12,7 +12,7 @@
 
 ```kotlin
 @Composable
-fun FeedScreen(model: FeedViewModel) {
+fun FeedView(model: FeedViewModel) {
     val state by model.state.collectAsState()
     PaginationList {
         pagedItems(

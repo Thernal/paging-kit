@@ -37,8 +37,11 @@ data class PagedItemsParams<T>(
     val emptyContent: (@Composable ColumnScope.() -> Unit)? = null,
     val errorContent: (@Composable ColumnScope.() -> Unit)? = null,
     val appendErrorContent: (@Composable (Throwable, () -> Unit) -> Unit)? = null,
-)
-
-internal const val DEFAULT_FETCH_THRESHOLD = 3
-internal const val DEFAULT_WINDOW_ID = "paged"
-internal const val DEFAULT_SHIMMER_ITEM_COUNT = 15
+) {
+    /** The defaults every paged params type shares. */
+    companion object {
+        internal const val DEFAULT_FETCH_THRESHOLD = 3
+        internal const val DEFAULT_WINDOW_ID = "paged"
+        internal const val DEFAULT_SHIMMER_ITEM_COUNT = 15
+    }
+}

@@ -1,6 +1,7 @@
 package io.thernal.pagingkit.paging.api.presentation.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,27 +26,42 @@ internal fun <T> PreviewPaginationFlowRow(
         params.header?.invoke()
         when (val state = params.state) {
             PagingState.Idle -> params.emptyContent?.invoke(this)
-
             PagingState.Pending -> PreviewShimmerFlow(params)
-
             is PagingState.Error -> (params.errorContent ?: params.emptyContent)?.invoke(this)
+            is PagingState.Success -> PreviewFlowSuccess(state = state, params = params, content = content)
+        }
+    }
+}
 
-            is PagingState.Success -> when {
-                state.items.isNotEmpty() -> {
-                    FlowRow(Modifier.fillMaxWidth()) {
-                        state.items.forEachIndexed { index, item ->
-                            content(item)
-                            if (index < state.items.lastIndex) {
-                                params.separator?.invoke()
-                            }
-                        }
-                    }
-                    PreviewFlowFooter(status = state.appendStatus, params = params)
-                }
+@Composable
+private fun <T> ColumnScope.PreviewFlowSuccess(
+    state: PagingState.Success<T>,
+    params: PaginationFlowRowParams<T>,
+    content: @Composable (T) -> Unit,
+) {
+    when {
+        state.items.isNotEmpty() -> {
+            PreviewFlowItems(items = state.items, separator = params.separator, content = content)
+            PreviewFlowFooter(status = state.appendStatus, params = params)
+        }
 
-                state.appendStatus == PagingState.AppendStatus.Loading -> PreviewShimmerFlow(params)
+        state.appendStatus == PagingState.AppendStatus.Loading -> PreviewShimmerFlow(params)
 
-                else -> params.emptyContent?.invoke(this)
+        else -> params.emptyContent?.invoke(this)
+    }
+}
+
+@Composable
+private fun <T> PreviewFlowItems(
+    items: List<T>,
+    separator: (@Composable () -> Unit)?,
+    content: @Composable (T) -> Unit,
+) {
+    FlowRow(Modifier.fillMaxWidth()) {
+        items.forEachIndexed { index, item ->
+            content(item)
+            if (index < items.lastIndex) {
+                separator?.invoke()
             }
         }
     }

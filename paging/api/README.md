@@ -26,6 +26,7 @@ kotlinx.coroutines; versions in [`gradle/libs.versions.toml`](../../gradle/libs.
 - [PaginationList](#paginationlist)
 - [Grouped windows](#grouped-windows)
 - [PaginationFlowRow](#paginationflowrow)
+- [Styling from your design system](#styling-from-your-design-system)
 - [Placeholders, empty, errors and retry](#placeholders-empty-errors-and-retry)
 - [Refresh, search and other resets](#refresh-search-and-other-resets)
 - [Scroll state](#scroll-state)
@@ -91,7 +92,7 @@ Five facts carry the rest of this document:
 |---|---|---|
 | `:paging:api` | every feature module, and the app | the contracts in this document; re-exports nothing — see [Dependencies you declare](#dependencies-you-declare) |
 | `:paging:impl` | the module that builds the graph | `PaginatorImpl`, the list and flow-row hierarchies and their renderers |
-| `:paging:wiring` | the module that declares the [Metro](https://github.com/ZacSweers/metro) graph | `PagingWiring`, the bindings below |
+| `:paging:wiring` | the module that declares the [Metro](https://github.com/ZacSweers/metro) graph | `PagingProvidersModule`, the bindings below |
 | `:paging:preview` | feature modules that preview paged screens — optional | `PagingPreviewParameterProvider`, see [Previews](#previews) |
 
 The modules are not published to a Maven repository; build against them from source.
@@ -128,7 +129,7 @@ A module that names none of these types needs none of them. A missing one shows 
 
 ### With Metro
 
-`PagingWiring` is a `@BindingContainer` contributed to `AppScope`, so a graph over `AppScope` picks
+`PagingProvidersModule` is a `@BindingContainer` contributed to `AppScope`, so a graph over `AppScope` picks
 it up once the module is on the classpath. It binds, each `@SingleIn(AppScope::class)`:
 
 | Binding | For |
@@ -228,7 +229,7 @@ private fun FeedPreview(@PreviewParameter(FeedStates::class) state: PagingState<
 `states = listOf(PagingPreviewState.LOADING, PagingPreviewState.ERROR)` narrows the set; `error =`
 sets the throwable the error states carry (default `PreviewPagingException("Preview error")`). The
 module depends on `ui-tooling-preview`, which is why it is separate from `api`. The sample's
-[`NumbersScreen.kt`](../../sample/shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/lists/NumbersScreen.kt)
+[`NumbersScreen.kt`](../../sample/shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/shared/lists/NumbersScreen.kt)
 uses it.
 
 Outside a preview the default renderers draw nothing, so a missing installation shows up as a blank
@@ -485,6 +486,35 @@ A vertically scrolling `FlowRow` that crossfades between shimmer, content, error
 - `separator` is drawn between adjacent items inside the flow; use item padding for spacing.
 - Not lazy: every loaded item stays composed. For thousands of items, use a `LazyVerticalGrid` or a
   `PaginationList` of rows instead.
+- The crossfade's duration is a look: `PaginationFlowRowStyle(crossfadeMillis)`, from
+  `PagingTheme.styles.flowRow`, or `style =` on the params for one row — see
+  [Styling from your design system](#styling-from-your-design-system).
+
+## Styling from your design system
+
+paging-kit draws almost nothing of its own: shimmer, separators, empty, error and retry are the app's
+composables, passed as slots, so they already follow its design system. What the kit does decide — today
+the flow row's crossfade duration — is a field of `PagingStyles`, read from `PagingTheme.styles`, and the
+app fills it from its own tokens once:
+
+- **One file, in the app's design-system module** — `designsystem/…/paging/AppPagingStyles.kt`, a
+  `@Composable fun appPagingStyles(): PagingStyles` reading the design system's theme. It is the app's
+  code: no kit update touches it.
+- **Installed at the root**, inside the design system's theme: `AppTheme { PagingTheme(styles = appPagingStyles()) { … } }`.
+- **Never restyle by editing the kit.** A one-off is `style =` on a row's params; the kit's defaults are
+  neutral fallbacks for previews and tests, not a design.
+- **Map looks, keep behaviour.** `fetchThreshold`, `prefetchDistance` and `shimmerItemCount` stay on each
+  list's params.
+
+```kotlin
+@Composable
+fun appPagingStyles(): PagingStyles {
+    return PagingStyles(flowRow = PaginationFlowRowStyle(crossfadeMillis = AppTheme.tokens.motionMedium))
+}
+```
+
+`sample/designsystem` is a small design system wired exactly like this — tokens in `SampleTheme`, the
+mapping in `paging/SamplePagingStyles.kt`.
 
 ## Placeholders, empty, errors and retry
 
@@ -668,7 +698,8 @@ fun loadsUntilTheLastPage() = runTest {
 | `domain.model` | `Page`, `PagingState`, `PagingState.AppendStatus`, `itemsOrEmpty`, `canLoadMore`, `isLoadingMore`, `hasMore`, `map`, `mapItems` |
 | `domain.paginator` | `Paginator`, `PaginatorFactory` |
 | `presentation.components` | `PaginationList`, `PaginationListRenderer`, `LocalPaginationListRenderer`, `PaginationListScope`, `PaginationFlowRow`, `PaginationFlowRowRenderer`, `LocalPaginationFlowRowRenderer` |
-| `presentation.model` | `PaginationListParams`, `PaginationListState`, `rememberPaginationListState`, `PagedItemsParams`, `PagedItemsGroupedParams`, `PaginationFlowRowParams`, `ShimmerSlot` |
+| `presentation.model` | `PaginationListParams`, `PaginationListState`, `rememberPaginationListState`, `PagedItemsParams`, `PagedItemsGroupedParams`, `PaginationFlowRowParams`, `PaginationFlowRowStyle`, `ShimmerSlot` |
+| `presentation.theme` | `PagingTheme`, `PagingStyles` |
 
 `impl` declarations an application reaches for — package prefix `io.thernal.pagingkit.paging.impl`:
 
@@ -677,7 +708,7 @@ fun loadsUntilTheLastPage() = runTest {
 | `domain.paginator` | `PaginatorImpl`, `PaginatorFactoryImpl` |
 | `presentation.components` | `PaginationListRendererImpl`, `PaginationFlowRowRendererImpl` |
 
-`wiring` — `io.thernal.pagingkit.paging.wiring.PagingWiring`.
+`wiring` — `io.thernal.pagingkit.paging.wiring.PagingProvidersModule`.
 
 `preview` — `io.thernal.pagingkit.paging.preview`: `PagingPreviewParameterProvider`,
 `PagingPreviewState`, `PreviewPagingException`.

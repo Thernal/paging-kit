@@ -81,25 +81,25 @@ commonMain.dependencies {
 
 ### 2. Build one graph for the whole process
 
-[`app/SampleGraph.kt`](shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/app/SampleGraph.kt):
+[`app/SampleGraph.kt`](shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/shared/app/SampleGraph.kt):
 
 ```kotlin
 @DependencyGraph(AppScope::class)
 interface SampleGraph {
-    val providedValues: Set<ProvidedValue<*>>   // the two renderers, from PagingWiring
+    val providedValues: Set<ProvidedValue<*>>   // the two renderers, from PagingProvidersModule
     val examples: Set<SampleExample>            // the sample's own index
 }
 ```
 
-`PagingWiring` is contributed to `AppScope`, so nothing has to name it. The graph is created once
-per process: [`SampleApplication.kt`](app/src/main/kotlin/io/thernal/pagingkit/sample/android/SampleApplication.kt)
+`PagingProvidersModule` is contributed to `AppScope`, so nothing has to name it. The graph is created once
+per process: [`SampleApplication.kt`](app/src/main/kotlin/io/thernal/pagingkit/sample/app/SampleApplication.kt)
 on Android, a process-wide `lazy` in
-[`MainViewController.kt`](shared/src/iosMain/kotlin/io/thernal/pagingkit/sample/app/MainViewController.kt)
+[`MainViewController.kt`](shared/src/iosMain/kotlin/io/thernal/pagingkit/sample/shared/app/MainViewController.kt)
 on iOS.
 
 ### 3. Install the renderers at the composition root
 
-[`app/SampleApp.kt`](shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/app/SampleApp.kt):
+[`app/SampleApp.kt`](shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/shared/app/SampleApp.kt):
 
 ```kotlin
 @Composable
@@ -116,9 +116,9 @@ which is what lets a feature module preview its list without `impl`.)
 
 ### 4. Give each screen's ViewModel the factory
 
-Every example ends in a `*Bindings.kt` that receives `PaginatorFactory` from the graph and passes it
+Every example ends in a `*ProvidersModule.kt` that receives `PaginatorFactory` from the graph and passes it
 to the screen, which passes it to its ViewModel — see
-[`lists/ListsBindings.kt`](shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/lists/ListsBindings.kt).
+[`lists/ListsProvidersModule.kt`](shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/shared/lists/ListsProvidersModule.kt).
 In an application the ViewModel takes it as a constructor parameter through whatever creates
 ViewModels there. The ViewModel then does the rest:
 

@@ -49,7 +49,7 @@ Compose. Paginators are owned by ViewModels, so the app normally also has
 
 ### With Metro
 
-`PagingWiring` is `@BindingContainer @ContributesTo(AppScope::class)`: a graph over `AppScope`
+`PagingProvidersModule` is `@BindingContainer @ContributesTo(AppScope::class)`: a graph over `AppScope`
 includes it automatically. It binds `PaginatorFactory`, `PaginationListRenderer` and
 `PaginationFlowRowRenderer` as singletons and contributes two `ProvidedValue<*>` into
 `Set<ProvidedValue<*>>`.

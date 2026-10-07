@@ -94,6 +94,12 @@ to the factory, first occurrence wins.
 
 ## Presentation — render contracts
 
+Looks belong to the app's design system. Everything a list shows besides its items is a slot the app
+fills with its own composables; the few looks the kit decides itself (the flow row's crossfade) are
+fields of `PagingStyles`, read from `PagingTheme.styles`, so one file in the app's design system sets
+them and a kit update never changes how an app looks. The kit's example mapping lives in
+`sample/designsystem`, which nothing copies.
+
 Both components follow the same three-part pattern, and nothing about it is paging-specific:
 
 - `api` owns the contract (`PaginationListRenderer`), its `CompositionLocal`, and a composable facade

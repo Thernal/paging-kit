@@ -22,7 +22,7 @@ hand-written scroll listener, a paginator per query) or from a missing installat
 existing pieces first:
 
 ```sh
-grep -rn --include=*.kt -e "PagingWiring" -e "PaginationListRendererImpl" -e "LocalPaginationListRenderer provides" .  # installed?
+grep -rn --include=*.kt -e "PagingProvidersModule" -e "PaginationListRendererImpl" -e "LocalPaginationListRenderer provides" .  # installed?
 grep -rn --include=*.kt -e "PaginatorFactory" -e "paginatorFactory.create" .      # who owns paginators
 grep -rn --include=*.kt -e ": PageLoader<" -e "PageLoader {" .                    # loaders and their backends
 grep -rn --include=*.kt -e "PaginationList" -e "pagedItems" -e "PaginationFlowRow" .  # every paged UI
@@ -92,6 +92,8 @@ the work done, walk this:
 - [ ] Refresh / new criteria reset the existing paginator and then fetch; the loader reads the criteria
       the paginator was reset for.
 - [ ] `PaginationFlowRow` has a bounded height and no scrolling parent.
+- [ ] Looks come from the app's design system: `PagingStyles` mapped once (`appPagingStyles()`) and
+      installed with `PagingTheme` at the root; kit code is never edited to restyle.
 - [ ] The project builds and its tests pass. For paginator logic, add a `commonTest` (see
       [testing.md](references/testing.md)).
 - [ ] The review checklist in [troubleshooting.md](references/troubleshooting.md) passes.
