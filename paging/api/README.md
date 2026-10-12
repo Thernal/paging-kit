@@ -497,7 +497,7 @@ composables, passed as slots, so they already follow its design system. What the
 the flow row's crossfade duration — is a field of `PagingStyles`, read from `PagingTheme.styles`, and the
 app fills it from its own tokens once:
 
-- **One file, in the app's design-system module** — `designsystem/…/paging/AppPagingStyles.kt`, a
+- **One file, in the app's design-system module** — `core/designsystem/…/paging/AppPagingStyles.kt`, a
   `@Composable fun appPagingStyles(): PagingStyles` reading the design system's theme. It is the app's
   code: no kit update touches it.
 - **Installed at the root**, inside the design system's theme: `AppTheme { PagingTheme(styles = appPagingStyles()) { … } }`.
