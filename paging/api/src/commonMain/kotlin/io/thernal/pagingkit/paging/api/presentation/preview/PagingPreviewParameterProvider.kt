@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.paging.preview
+package io.thernal.pagingkit.paging.api.presentation.preview
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import io.thernal.pagingkit.paging.api.domain.model.PagingState

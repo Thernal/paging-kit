@@ -12,6 +12,9 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.collections.immutable)
+                // `PagingPreviewParameterProvider` extends `PreviewParameterProvider`. Nothing is
+                // re-exported, so a module that subclasses the provider declares this itself.
+                implementation(libs.compose.ui.tooling.preview)
             }
         }
     }

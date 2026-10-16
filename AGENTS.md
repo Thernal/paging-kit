@@ -2,7 +2,7 @@
 
 paging-kit is a **kit**: reusable Compose Multiplatform code that applications copy — renamed into their own
 package — with `skillctl.sh kit install paging-kit` (the skill-manager skill, `Thernal/knowledge`), and later
-merge changes from with `kit update`. What they copy is listed in `kit.yml`: the modules `paging/api`, `paging/impl`, `paging/wiring`, `paging/preview`.
+merge changes from with `kit update`. What they copy is listed in `kit.yml`: the modules `paging/api`, `paging/impl`, `paging/wiring`.
 Everything committed to `main` reaches every app that takes the next update, so this file's first rule is
 about delivery.
 

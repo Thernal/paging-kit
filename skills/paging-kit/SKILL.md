@@ -65,7 +65,7 @@ These hold everywhere; each reference builds on them.
 | The task | Mechanism | Read |
 |---|---|---|
 | install the kit, the composition root, wiring without Metro | graph + provided values | [setup.md](references/setup.md) |
-| preview a paged screen in every state | `PagingPreviewParameterProvider` (`:paging:preview`) | [setup.md](references/setup.md) |
+| preview a paged screen in every state | `PagingPreviewParameterProvider` (`:paging:api`) | [setup.md](references/setup.md) |
 | implement a loader over an API (page numbers, cursors, "no total") | `PageLoader`, `Page` | [paginator.md](references/paginator.md) |
 | a ViewModel holding a paged collection; add/delete without reload | `PaginatorFactory`, `Paginator` | [paginator.md](references/paginator.md) |
 | a list that loads more on scroll | `PaginationList` + `pagedItems` | [lists.md](references/lists.md) |

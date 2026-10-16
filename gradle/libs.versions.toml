@@ -56,7 +56,7 @@ compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.re
 compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-multiplatform" }
 compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
 compose-animation = { module = "org.jetbrains.compose.animation:animation", version.ref = "compose-multiplatform" }
-# `@Preview` and `PreviewParameterProvider` in common code; only `:paging:preview` and the sample use it.
+# `@Preview` and `PreviewParameterProvider` in common code; only `:paging:api` (`PagingPreviewParameterProvider`) and the sample use it.
 compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-multiplatform" }
 # Material 3 is the sample's only extra: the kit itself names no design system.
 compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
