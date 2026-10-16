@@ -1,4 +1,4 @@
-package io.thernal.pagingkit.paging.preview
+package io.thernal.pagingkit.paging.api.presentation.preview
 
 /** One `PagingState` a list can be in, as a preview shows it. */
 enum class PagingPreviewState {

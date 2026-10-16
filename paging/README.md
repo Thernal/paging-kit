@@ -13,14 +13,13 @@ design — why each contract has the shape it has.
 
 - `api` — `PageLoader`, `Page`, `PagingState`, `Paginator`, `PaginatorFactory`; the
   `PaginationList` and `PaginationFlowRow` render contracts, their params, `PaginationListScope`,
-  `PaginationListState` and `ShimmerSlot`.
+  `PaginationListState` and `ShimmerSlot`; and `PagingPreviewParameterProvider` with
+  `PagingPreviewState` (package `presentation.preview`): every `PagingState` of a list as preview
+  parameters.
 - `impl` — `PaginatorImpl` and its factory; the `LazyColumn` and `FlowRow` hierarchies behind the
   two render contracts (internal), and their renderer classes.
 - `wiring` — binds `PaginatorFactory` and both renderers into an application graph, and
   contributes each renderer's composition local as a `ProvidedValue`.
-- `preview` — `PagingPreviewParameterProvider`: every `PagingState` of a list as preview parameters.
-  Separate from `api` because it depends on `ui-tooling-preview`, which `api` should not force on
-  every consumer.
 
 An `impl` declaration that would collide with an `api` name carries the `Impl` suffix, composables
 included: `PaginationListImpl` is the internal render of `api`'s `PaginationList`, the same way

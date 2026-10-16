@@ -91,10 +91,9 @@ conventions and where each kind of artifact belongs. `.claude/skills/` holds ven
 
 | Path | What |
 |---|---|
-| `paging/api` | `PageLoader`, `Page`, `PagingState`, `Paginator`, `PaginatorFactory`; the `PaginationList` and `PaginationFlowRow` render contracts and their params. Depends on no implementation. |
+| `paging/api` | `PageLoader`, `Page`, `PagingState`, `Paginator`, `PaginatorFactory`; the `PaginationList` and `PaginationFlowRow` render contracts and their params; `PagingPreviewParameterProvider`, every `PagingState` of a list as `@Preview` parameters. Depends on no implementation. |
 | `paging/impl` | `PaginatorImpl`, the `LazyColumn` and `FlowRow` hierarchies behind the render contracts, and their renderers. |
 | `paging/wiring` | The worked example of installing the above into an application graph, with [Metro](https://github.com/ZacSweers/metro). `api` and `impl` name no container, so an app on a different one replaces just this module. |
-| `paging/preview` | `PagingPreviewParameterProvider` — every `PagingState` of a list as `@Preview` parameters. Optional; depends on `ui-tooling-preview`. |
 | `sample/designsystem` | A small design system and its mapping onto `PagingStyles` — how an app styles the kit. Never copied. |
 | `sample/` | A runnable Android and iOS app with a simple and a real-life example of every capability — see [`sample/README.md`](sample/README.md). |
 | `skills/` | Agent skills for projects that use the kit — see [For AI agents](#for-ai-agents). |

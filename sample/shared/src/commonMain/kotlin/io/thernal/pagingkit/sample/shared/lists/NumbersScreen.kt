@@ -10,7 +10,7 @@ import io.thernal.pagingkit.paging.api.domain.model.PagingState
 import io.thernal.pagingkit.paging.api.domain.paginator.PaginatorFactory
 import io.thernal.pagingkit.paging.api.presentation.components.PaginationList
 import io.thernal.pagingkit.paging.api.presentation.model.PagedItemsParams
-import io.thernal.pagingkit.paging.preview.PagingPreviewParameterProvider
+import io.thernal.pagingkit.paging.api.presentation.preview.PagingPreviewParameterProvider
 import io.thernal.pagingkit.sample.shared.ui.ExampleScaffold
 import io.thernal.pagingkit.sample.shared.ui.FullMessage
 import io.thernal.pagingkit.sample.shared.ui.ItemRow

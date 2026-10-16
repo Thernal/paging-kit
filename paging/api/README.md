@@ -93,7 +93,6 @@ Five facts carry the rest of this document:
 | `:paging:api` | every feature module, and the app | the contracts in this document; re-exports nothing — see [Dependencies you declare](#dependencies-you-declare) |
 | `:paging:impl` | the module that builds the graph | `PaginatorImpl`, the list and flow-row hierarchies and their renderers |
 | `:paging:wiring` | the module that declares the [Metro](https://github.com/ZacSweers/metro) graph | `PagingProvidersModule`, the bindings below |
-| `:paging:preview` | feature modules that preview paged screens — optional | `PagingPreviewParameterProvider`, see [Previews](#previews) |
 
 The modules are not published to a Maven repository; build against them from source.
 [`sample/shared/build.gradle.kts`](../../sample/shared/build.gradle.kts) is the reference consumer:
@@ -122,7 +121,7 @@ type from one of these libraries in its own code declares the library itself, as
 |---|---|
 | `kotlinx-coroutines-core` | `Flow<PagingState<T>>` from a paginator |
 | `kotlinx-collections-immutable` | `ImmutableList<T>` pages and items |
-| `compose-ui-tooling-preview` | `PagingPreviewParameterProvider` from `:paging:preview` (`@Preview`, `PreviewParameterProvider`) |
+| `compose-ui-tooling-preview` | `PagingPreviewParameterProvider` from `:paging:api` (`@Preview`, `PreviewParameterProvider`) |
 
 A module that names none of these types needs none of them. A missing one shows up at compile time as
 `Cannot access class 'kotlinx.collections.immutable.ImmutableList'`.
@@ -211,7 +210,7 @@ Each state previews its slot: `Pending` the shimmers, `Error` `errorContent`, `I
 `Success` `emptyContent`, `AppendStatus.Failed` `appendErrorContent` (its retry does nothing). Preview
 the screen's stateless content composable, the one that takes `state` rather than a ViewModel.
 
-**Every state at once** — `:paging:preview` has a `PreviewParameterProvider` that yields one
+**Every state at once** — `:paging:api` has a `PreviewParameterProvider` that yields one
 `PagingState` per `PagingPreviewState` (`LOADING`, `LOADED`, `LOADING_MORE`, `LOAD_MORE_FAILED`,
 `END_REACHED`, `ERROR`, `EMPTY`), each preview named after its state. A preview parameter class needs
 a no-argument constructor, so subclass it once per item type with sample items:
@@ -228,7 +227,8 @@ private fun FeedPreview(@PreviewParameter(FeedStates::class) state: PagingState<
 
 `states = listOf(PagingPreviewState.LOADING, PagingPreviewState.ERROR)` narrows the set; `error =`
 sets the throwable the error states carry (default `PreviewPagingException("Preview error")`). The
-module depends on `ui-tooling-preview`, which is why it is separate from `api`. The sample's
+provider is in `api` (package `presentation.preview`); a module that subclasses it declares
+`compose-ui-tooling-preview` itself, since `api` re-exports nothing. The sample's
 [`NumbersScreen.kt`](../../sample/shared/src/commonMain/kotlin/io/thernal/pagingkit/sample/shared/lists/NumbersScreen.kt)
 uses it.
 
@@ -699,6 +699,7 @@ fun loadsUntilTheLastPage() = runTest {
 | `domain.paginator` | `Paginator`, `PaginatorFactory` |
 | `presentation.components` | `PaginationList`, `PaginationListRenderer`, `LocalPaginationListRenderer`, `PaginationListScope`, `PaginationFlowRow`, `PaginationFlowRowRenderer`, `LocalPaginationFlowRowRenderer` |
 | `presentation.model` | `PaginationListParams`, `PaginationListState`, `rememberPaginationListState`, `PagedItemsParams`, `PagedItemsGroupedParams`, `PaginationFlowRowParams`, `PaginationFlowRowStyle`, `ShimmerSlot` |
+| `presentation.preview` | `PagingPreviewParameterProvider`, `PagingPreviewState`, `PreviewPagingException` |
 | `presentation.theme` | `PagingTheme`, `PagingStyles` |
 
 `impl` declarations an application reaches for — package prefix `io.thernal.pagingkit.paging.impl`:
@@ -709,6 +710,3 @@ fun loadsUntilTheLastPage() = runTest {
 | `presentation.components` | `PaginationListRendererImpl`, `PaginationFlowRowRendererImpl` |
 
 `wiring` — `io.thernal.pagingkit.paging.wiring.PagingProvidersModule`.
-
-`preview` — `io.thernal.pagingkit.paging.preview`: `PagingPreviewParameterProvider`,
-`PagingPreviewState`, `PreviewPagingException`.

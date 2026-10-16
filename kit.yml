@@ -22,13 +22,11 @@ package: io.thernal.pagingkit
 module: :paging
 alias: pagingkit
 
-# Copied into the application and merged on update. `preview` is optional to use
-# but copied with the rest, so an update never has to ask which parts were taken.
+# Copied into the application and merged on update.
 code:
   - paging/api
   - paging/impl
   - paging/wiring
-  - paging/preview
 
 # The public contract — its source, not its README, so a documentation fix does
 # not count. When it moves and `skill` has not moved since, the skill is reported
@@ -56,7 +54,7 @@ requires:
   - targets android, iosArm64, iosSimulatorArm64 — the same set as nav-kit
   - catalog kotlinx-coroutines-core (kotlinx-coroutines = 1.11.0)
   - catalog kotlinx-collections-immutable (kotlinx-collections-immutable = 0.5.0)
-  - catalog compose-ui-tooling-preview (compose-multiplatform = 1.12.0) — paging/preview only
+  - catalog compose-ui-tooling-preview (compose-multiplatform = 1.12.0) — paging/api declares it for PagingPreviewParameterProvider
   - catalog metro-runtime, plugin metro (metro = 1.4.2) — paging/wiring only
   - styles the app maps its design system's tokens onto PagingStyles in one file of its own design-system module and installs PagingTheme(styles = …) at the root; the kit's defaults are neutral fallbacks for previews and tests, and kit code is never edited to restyle
   - settings enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS"), and each code part included as a module
